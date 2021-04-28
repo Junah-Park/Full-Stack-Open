@@ -1,0 +1,43 @@
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+server-->browser: HTML-code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+server-->browser: spa.js
+
+note over browser:
+browser starts executing js-code
+that requests JSON data from server 
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{ content: "HTML is easy", date: "2019-05-23" }, ...]
+
+note over browser:
+browser executes the event handler
+that renders notes to display
+as well as the form element
+end note
+
+note over browser:
+the user fills the form
+then clicks submit
+the browser then sends the form data
+to the server as a POST
+end note
+
+note over server:
+the text data from the request body is
+added to the notes array
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+browser->server: {content: "single page app does not reload the whole page", date: "2019-05-25T15:15:59.905Z"}
+server-->browser: HTTP Status Code: 201 created
+
+note over browser:
+the browser adds the note 
+and rerenders the page in the client
+without having to fetch a new file
+from the server
+end note
