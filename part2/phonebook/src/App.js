@@ -11,8 +11,7 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')  
   const [ notification, setNotification] = useState(null)
-  let displayTime;
-
+  
   //add a name along with a number to the phonebook if it isn't found
   const addName = (event) => {
     event.preventDefault()
@@ -34,9 +33,7 @@ const App = () => {
         .then(returnedPerson => {
           setPersons(persons.concat(returnedPerson))
           setNotification(`Added ${returnedPerson.name}`)
-          clearTimeout(displayTime)
-          displayTime = () => setTimeout(() => {
-            console.log('adding')
+          setTimeout(() => {
             setNotification(null)
           }, 5000)
         })
@@ -59,9 +56,7 @@ const App = () => {
               //remove person from state by filtering id
               setPersons(persons.filter((person) => person.id !== id))
               setNotification(`Removed ${delPerson.name}`)
-              clearTimeout(displayTime)
-              displayTime = () => setTimeout(() => {
-                console.log('deleting')
+              setTimeout(() => {
                 setNotification(null)
               }, 5000)
             })
