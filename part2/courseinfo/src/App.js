@@ -46,6 +46,7 @@ const App = () => {
       ]
     }
   ]
+  //for each course in the array, display a Course component
 
   return courses.map(
     (course) => <Course key={course.id} course={course} />
